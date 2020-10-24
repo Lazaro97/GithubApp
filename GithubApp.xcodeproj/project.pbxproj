@@ -12,6 +12,8 @@
 		8C754FC22544B58D00DA452B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C754FC12544B58D00DA452B /* ViewController.swift */; };
 		8C754FCA2544B58F00DA452B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C754FC82544B58F00DA452B /* LaunchScreen.storyboard */; };
 		8C754FD22544B7E900DA452B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C754FD12544B7E900DA452B /* Assets.xcassets */; };
+		8C754FD42544B8CB00DA452B /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C754FD32544B8CB00DA452B /* SearchVC.swift */; };
+		8C754FD82544BBD200DA452B /* FavoritesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C754FD72544BBD200DA452B /* FavoritesVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		8C754FC92544B58F00DA452B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8C754FCB2544B58F00DA452B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8C754FD12544B7E900DA452B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8C754FD32544B8CB00DA452B /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
+		8C754FD72544BBD200DA452B /* FavoritesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +64,8 @@
 				8C754FD12544B7E900DA452B /* Assets.xcassets */,
 				8C754FC82544B58F00DA452B /* LaunchScreen.storyboard */,
 				8C754FCB2544B58F00DA452B /* Info.plist */,
+				8C754FD32544B8CB00DA452B /* SearchVC.swift */,
+				8C754FD72544BBD200DA452B /* FavoritesVC.swift */,
 			);
 			path = GithubApp;
 			sourceTree = "<group>";
@@ -134,6 +140,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C754FD42544B8CB00DA452B /* SearchVC.swift in Sources */,
+				8C754FD82544BBD200DA452B /* FavoritesVC.swift in Sources */,
 				8C754FC22544B58D00DA452B /* ViewController.swift in Sources */,
 				8C754FBE2544B58D00DA452B /* AppDelegate.swift in Sources */,
 				8C754FC02544B58D00DA452B /* SceneDelegate.swift in Sources */,
