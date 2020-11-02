@@ -44,7 +44,7 @@ class SearchVC: UIViewController {
         
         //If there is no username then else action appears for text validation
         guard isUsernameEntered else {
-            print("No username")
+            presentGFAlertOnMainTread(title: "Empty Username", message: "Please enter a username.We need to know who to look for.", buttonTitle: "Okay")
             return
         }
         
