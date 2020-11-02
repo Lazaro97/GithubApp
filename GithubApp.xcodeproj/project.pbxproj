@@ -14,7 +14,6 @@
 		8C348A4A2550ABAB00CB455F /* ViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C348A492550ABAB00CB455F /* ViewControllerExtensions.swift */; };
 		8C754FBE2544B58D00DA452B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C754FBD2544B58D00DA452B /* AppDelegate.swift */; };
 		8C754FC02544B58D00DA452B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C754FBF2544B58D00DA452B /* SceneDelegate.swift */; };
-		8C754FC22544B58D00DA452B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C754FC12544B58D00DA452B /* ViewController.swift */; };
 		8C754FCA2544B58F00DA452B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C754FC82544B58F00DA452B /* LaunchScreen.storyboard */; };
 		8C754FD22544B7E900DA452B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C754FD12544B7E900DA452B /* Assets.xcassets */; };
 		8C754FD42544B8CB00DA452B /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C754FD32544B8CB00DA452B /* SearchVC.swift */; };
@@ -32,7 +31,6 @@
 		8C754FBA2544B58D00DA452B /* GithubApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GithubApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C754FBD2544B58D00DA452B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8C754FBF2544B58D00DA452B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		8C754FC12544B58D00DA452B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		8C754FC92544B58F00DA452B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8C754FCB2544B58F00DA452B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8C754FD12544B7E900DA452B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -53,6 +51,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8C348A4B2550AFA000CB455F /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				8C754FD32544B8CB00DA452B /* SearchVC.swift */,
+				8C754FD72544BBD200DA452B /* FavoritesVC.swift */,
+				8C348A4125509BEA00CB455F /* FollowerListVC.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		8C348A4C2550B03100CB455F /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				8CEEAFE525468FB200CFCD57 /* GFButton.swift */,
+				8CEEAFE7254691BC00CFCD57 /* GFTextField.swift */,
+				8C348A432550A2D500CB455F /* GFTitleLabel.swift */,
+				8C348A452550A52A00CB455F /* GFBodyLabel.swift */,
+			);
+			path = "Custom Views";
+			sourceTree = "<group>";
+		};
+		8C348A4D2550B0C100CB455F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8C348A492550ABAB00CB455F /* ViewControllerExtensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8C348A4E2550B11500CB455F /* Support */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
 		8C754FB12544B58D00DA452B = {
 			isa = PBXGroup;
 			children = (
@@ -72,21 +106,16 @@
 		8C754FBC2544B58D00DA452B /* GithubApp */ = {
 			isa = PBXGroup;
 			children = (
+				8C348A4E2550B11500CB455F /* Support */,
+				8C348A4D2550B0C100CB455F /* Extensions */,
+				8C348A4C2550B03100CB455F /* Custom Views */,
+				8C348A4B2550AFA000CB455F /* ViewControllers */,
 				8C754FBD2544B58D00DA452B /* AppDelegate.swift */,
 				8C754FBF2544B58D00DA452B /* SceneDelegate.swift */,
-				8C754FC12544B58D00DA452B /* ViewController.swift */,
 				8C754FD12544B7E900DA452B /* Assets.xcassets */,
 				8C754FC82544B58F00DA452B /* LaunchScreen.storyboard */,
 				8C754FCB2544B58F00DA452B /* Info.plist */,
-				8C754FD32544B8CB00DA452B /* SearchVC.swift */,
-				8C754FD72544BBD200DA452B /* FavoritesVC.swift */,
-				8C348A4125509BEA00CB455F /* FollowerListVC.swift */,
-				8CEEAFE525468FB200CFCD57 /* GFButton.swift */,
-				8CEEAFE7254691BC00CFCD57 /* GFTextField.swift */,
-				8C348A432550A2D500CB455F /* GFTitleLabel.swift */,
-				8C348A452550A52A00CB455F /* GFBodyLabel.swift */,
 				8C348A472550A61B00CB455F /* GFVAlertVC.swift */,
-				8C348A492550ABAB00CB455F /* ViewControllerExtensions.swift */,
 			);
 			path = GithubApp;
 			sourceTree = "<group>";
@@ -164,7 +193,6 @@
 				8C754FD42544B8CB00DA452B /* SearchVC.swift in Sources */,
 				8C754FD82544BBD200DA452B /* FavoritesVC.swift in Sources */,
 				8CEEAFE625468FB200CFCD57 /* GFButton.swift in Sources */,
-				8C754FC22544B58D00DA452B /* ViewController.swift in Sources */,
 				8C348A4A2550ABAB00CB455F /* ViewControllerExtensions.swift in Sources */,
 				8C754FBE2544B58D00DA452B /* AppDelegate.swift in Sources */,
 				8C754FC02544B58D00DA452B /* SceneDelegate.swift in Sources */,
