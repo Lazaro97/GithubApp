@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8C348A4225509BEA00CB455F /* FollowerListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C348A4125509BEA00CB455F /* FollowerListVC.swift */; };
 		8C754FBE2544B58D00DA452B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C754FBD2544B58D00DA452B /* AppDelegate.swift */; };
 		8C754FC02544B58D00DA452B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C754FBF2544B58D00DA452B /* SceneDelegate.swift */; };
 		8C754FC22544B58D00DA452B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C754FC12544B58D00DA452B /* ViewController.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8C348A4125509BEA00CB455F /* FollowerListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerListVC.swift; sourceTree = "<group>"; };
 		8C754FBA2544B58D00DA452B /* GithubApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GithubApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C754FBD2544B58D00DA452B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8C754FBF2544B58D00DA452B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 				8C754FD72544BBD200DA452B /* FavoritesVC.swift */,
 				8CEEAFE525468FB200CFCD57 /* GFButton.swift */,
 				8CEEAFE7254691BC00CFCD57 /* GFTextField.swift */,
+				8C348A4125509BEA00CB455F /* FollowerListVC.swift */,
 			);
 			path = GithubApp;
 			sourceTree = "<group>";
@@ -152,6 +155,7 @@
 				8C754FC22544B58D00DA452B /* ViewController.swift in Sources */,
 				8C754FBE2544B58D00DA452B /* AppDelegate.swift in Sources */,
 				8C754FC02544B58D00DA452B /* SceneDelegate.swift in Sources */,
+				8C348A4225509BEA00CB455F /* FollowerListVC.swift in Sources */,
 				8CEEAFE8254691BC00CFCD57 /* GFTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
