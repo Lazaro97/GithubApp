@@ -8,10 +8,9 @@
 
 import Foundation
 
-struct Follower: Codable {
+struct Follower: Codable, Hashable {
     var login: String
-    //This dosent work in swift becuase of the underscore.
-    ///var avatar_url: String
     var avatarUrl: String
-    
+    //This dosent work in swift becuase of the underscore.
+    ///var avatar_url: String instead we use avatarURL: String
 }
