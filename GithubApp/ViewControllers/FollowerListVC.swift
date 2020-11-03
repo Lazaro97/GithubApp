@@ -15,7 +15,6 @@ class FollowerListVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
         configureViewController()
         configureCollectionView()
         getFollowers()
@@ -34,6 +33,20 @@ class FollowerListVC: UIViewController {
         collectionView.backgroundColor = .systemPink
         collectionView.register(FollowerCell.self, forCellWithReuseIdentifier: FollowerCell.resueID)
     }
+    
+    func createThreeColumFlowLayout() -> UICollectionViewFlowLayout {
+        let width               = view.bounds.width
+        let padding: CGFloat    = 12
+        let minimumItemSpacing : CGFloat = 10
+        let avilableWidth = width - (padding * 2) - (minimumItemSpacing * 2)
+        let itemWidth = avilableWidth / 3
+        
+        let flowlayout = UICollectionViewFlowLayout()
+        flowlayout.sectionInset = UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding)
+        flowlayout.itemSize = CGSize(width: itemWidth, height: itemWidth + 40)
+        return UICollectionViewFlowLayout()
+    }
+    
     
     func getFollowers() {
         NetworkManager.shared.getFollower(for: username, page: 1) { result in
