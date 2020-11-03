@@ -18,15 +18,15 @@ class NetworkManager {
     private init() {}
     
     //Passing our username and page number and clousure to return an array of followers or error message
-    ///We used ErrorMessage? from errormessage strcut enum function
-    func getFollower(for username: String, page: Int, completed: @escaping([Follower]?, ErrorMessage?) -> Void) {
+    ///We used GFError from GFError strcut enum function
+    func getFollower(for username: String, page: Int, completed: @escaping(Result<[Follower], GFError>) -> Void) {
         
         //Create an endpoint
         let endpoint = baseURL + "\(username)/followers?per_page=100&page=\(page)"
         
         //If there is an error
         guard let url = URL(string: endpoint) else {
-            completed(nil, .invalidUsername)
+            completed(.failure(.invalidUsername))
             return
         }
      
@@ -35,19 +35,19 @@ class NetworkManager {
             
             //If there is an internet connection error
             if let _ = error {
-                completed(nil, .unableToComplete)
+                completed(.failure(.unableToComplete))
                 return
             }
             
             //If there is a response url not valid
             guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-                completed(nil, .invalidResponse)
+                completed(.failure(.invalidResponse))
                 return
             }
             
             //Making sure is the data nil
             guard let data = data else {
-                completed(nil, .invalidData)
+                completed(.failure(.invalidData))
                 return
             }
             
@@ -55,9 +55,9 @@ class NetworkManager {
                 let decoder = JSONDecoder()
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
                 let followers = try decoder.decode([Follower].self, from: data)
-                completed(followers, nil)
+                completed(.success(followers))
             } catch {
-                completed(nil, .invalidData)
+                completed(.failure(.invalidData))
             }
         }
         task.resume()
