@@ -34,6 +34,7 @@ class FollowerListVC: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     
+    
     func configureCollectionView(){
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createThreeColumFlowLayout())
         view.addSubview(collectionView)
@@ -41,6 +42,7 @@ class FollowerListVC: UIViewController {
         collectionView.register(FollowerCell.self, forCellWithReuseIdentifier: FollowerCell.resueID)
     }
     
+    //This is where we adjust the cell layout. In this case we wanted a collection view of three columns
     func createThreeColumFlowLayout() -> UICollectionViewFlowLayout {
         
         let width               = view.bounds.width
@@ -56,10 +58,12 @@ class FollowerListVC: UIViewController {
         return flowlayout
     }
     
-    
+    //Network to retrieve the username followers
+    //Capture List [weak self]
     func getFollowers() {
-        NetworkManager.shared.getFollower(for: username, page: 1) { result in
-        
+        NetworkManager.shared.getFollower(for: username, page: 1) { [weak self] result in
+        guard let self = self else {return}
+            
         switch result {
             case .success(let followers):
                 self.followers = followers
@@ -71,7 +75,7 @@ class FollowerListVC: UIViewController {
         }
     }
     
-    
+    //This is where we configure the cell with data
     func configureDataSource(){
         datasource = UICollectionViewDiffableDataSource<Section, Follower>(collectionView: collectionView, cellProvider: {
         (collectionView, IndexPath, follower) -> UICollectionViewCell? in
@@ -84,6 +88,7 @@ class FollowerListVC: UIViewController {
         })
     }
     
+    //Here we update data
     func updateData() {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Follower>()
         snapshot.appendSections([.main])
