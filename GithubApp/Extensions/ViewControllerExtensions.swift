@@ -8,7 +8,7 @@
 
 import UIKit
 
-//Means everything in this file can use varibles
+//We use Fileprivate becuase extensions cant hold variable so we use now use varibles
 fileprivate var containerView: UIView!
 
 extension UIViewController {
@@ -21,6 +21,7 @@ extension UIViewController {
         }
     }
 
+    
     func showLoadingView() {
         containerView = UIView(frame: view.bounds)
         view.addSubview(containerView)
@@ -50,5 +51,11 @@ extension UIViewController {
             containerView.removeFromSuperview()
             containerView = nil
         }
+    }
+    
+    func showEmptyStateView(with message: String, in view: UIView){
+        let emptyStateView = GFEmptyStateView(message: message)
+        emptyStateView.frame = view.bounds
+        view.addSubview(emptyStateView)
     }
 }
