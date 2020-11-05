@@ -17,11 +17,13 @@ class FollowerListVC: UIViewController {
     var username: String!
     var page = 1
     var hasMoreFollowers = true
+    var isSearching = false
 
     var followers: [Follower] = []
     var filteredFollowers: [Follower] = []
     var collectionView: UICollectionView!
     var datasource: UICollectionViewDiffableDataSource<Section, Follower>!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,12 +33,14 @@ class FollowerListVC: UIViewController {
         configureDataSource()
         configureSearchController()
         
+        
     }
     
     func configureViewController() {
         view.backgroundColor = .systemBackground
         navigationController?.isNavigationBarHidden = false
         navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.hidesSearchBarWhenScrolling = false
     }
     
     
@@ -64,6 +68,17 @@ class FollowerListVC: UIViewController {
         return flowlayout
     }
    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+       // What ? True : False
+        let activeArray = isSearching ? filteredFollowers : followers
+        let follower = activeArray[indexPath.item]
+
+        let destinationToUserInfoVC = UserInfoVC()
+        destinationToUserInfoVC.username = follower.login
+        let navigationController = UINavigationController(rootViewController: destinationToUserInfoVC)
+        present(navigationController, animated: true)
+    }
+    
     //Setting up search bar
     func configureSearchController() {
         let searchController = UISearchController()
@@ -152,11 +167,13 @@ extension FollowerListVC: UISearchResultsUpdating, UISearchBarDelegate {
             guard let filter = searchController.searchBar.text, !filter.isEmpty else {
                 return
             }
+        isSearching = true
         //Filter out the array from our search text. $0 represents the array item you are on. We used lowercased becuase it doesement matter if its capitalized or lowercassed.
         filteredFollowers = followers.filter {$0.login.lowercased().contains(filter.lowercased())}
         updateData(on: filteredFollowers)
   }
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
        updateData(on: followers)
+        isSearching = false
     }
 }
