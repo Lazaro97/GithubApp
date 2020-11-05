@@ -33,7 +33,9 @@ class UserInfoVC: UIViewController {
                      case .success(let user):
                      //Here we add the headerVC
                          DispatchQueue.main.async {
-                         self.add(childVC: GFUserHeaderVC(user: user), to: self.headerView)
+                         self.add(childVC:    GFUserHeaderVC(user: user), to: self.headerView)
+                            self.add(childVC: GFRepoVC(user: user), to: self.itemViewOne)
+                            self.add(childVC: GFFollowerVC(user: user), to: self.itemViewTwo)
 
                          }
                      case .failure(let error):
