@@ -13,7 +13,7 @@ class UserInfoVC: UIViewController {
     let headerView = UIView()
     let itemViewOne = UIView()
     let itemViewTwo = UIView()
-    var itemViews: [UIView] = [ ]
+    let dateLabel = GFBodyLabel(textAlignment: .center)
     var username: String!
 
     override func viewDidLoad() {
@@ -36,6 +36,7 @@ class UserInfoVC: UIViewController {
                          self.add(childVC:    GFUserHeaderVC(user: user), to: self.headerView)
                             self.add(childVC: GFRepoVC(user: user), to: self.itemViewOne)
                             self.add(childVC: GFFollowerVC(user: user), to: self.itemViewTwo)
+                            self.dateLabel.text = "Github Since \(user.createdAt.convertToDispalyFormat())"
 
                          }
                      case .failure(let error):
@@ -95,6 +96,16 @@ class UserInfoVC: UIViewController {
             itemViewTwo.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             itemViewTwo.heightAnchor.constraint(equalToConstant: 140)
         ,])
+        
+        view.addSubview(dateLabel)
+        dateLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            dateLabel.topAnchor.constraint(equalTo: itemViewTwo.bottomAnchor, constant: 20),
+            dateLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            dateLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            dateLabel.heightAnchor.constraint(equalToConstant: 18 )
+        ])
     }
     
     func add(childVC: UIViewController, to containerView: UIView) {
