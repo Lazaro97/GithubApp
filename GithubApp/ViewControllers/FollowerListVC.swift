@@ -96,7 +96,7 @@ class FollowerListVC: UIViewController {
         
         showLoadingView()
         
-        NetworkManager.shared.getFollower(for: username, page: page) { [weak self] result in
+        NetworkManager.shared.getFollowers(for: username, page: page) { [weak self] result in
         
         guard let self = self else {return}
         
