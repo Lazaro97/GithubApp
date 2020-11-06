@@ -45,8 +45,15 @@ class FollowerListVC: UIViewController {
         navigationController?.isNavigationBarHidden = false
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.hidesSearchBarWhenScrolling = false
+        
+        
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
+        navigationItem.rightBarButtonItem = addButton
     }
     
+    @objc func addButtonTapped(){
+        
+    }
     
     func configureCollectionView(){
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createThreeColumFlowLayout())
