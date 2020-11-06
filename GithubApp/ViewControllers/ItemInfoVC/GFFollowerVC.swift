@@ -10,7 +10,7 @@ import Foundation
 
 import UIKit
 
-class GFFollowerVC : GFItemInfoVCV {
+class GFFollowerVC : GFItemInfoVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,5 +22,9 @@ class GFFollowerVC : GFItemInfoVCV {
             followers, withCount: user.followers)
         infoItemViewTwo.set(itemInfoType: .following, withCount: user.following)
         actionButton.set(backgroundColor: .systemGreen, title: "Get Followers")
+    }
+    
+    override func actionButtonTapped() {
+        delegate.didTapGetFollowers(for: user)
     }
 }

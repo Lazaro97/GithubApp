@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class GFRepoVC: GFItemInfoVCV {
+class GFRepoVC: GFItemInfoVC {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +20,9 @@ class GFRepoVC: GFItemInfoVCV {
         infoItemViewOne.set(itemInfoType: .repos, withCount: user.publicRepos)
         infoItemViewTwo.set(itemInfoType: .gists, withCount: user.publicGists)
         actionButton.set(backgroundColor: .systemPurple, title:"Github Profile")
-        
+    }
+    
+    override func actionButtonTapped() {
+        delegate.didTapGithubProfile(for: user)
     }
 }

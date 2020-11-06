@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GFItemInfoVCV: UIViewController {
+class GFItemInfoVC: UIViewController {
 
     let stackView = UIStackView()
     let infoItemViewOne = GFItemInfoVIew()
@@ -16,6 +16,9 @@ class GFItemInfoVCV: UIViewController {
     let actionButton = GFButton()
     
     var user: User!
+    
+    //For button pressed 
+    weak var delegate: UserInfoVCDelegate!
     
     init(user: User) {
            super.init(nibName: nil, bundle: nil)
@@ -31,6 +34,7 @@ class GFItemInfoVCV: UIViewController {
         configureBackgroundView()
         layoutUI()
         configureStackView()
+        configureActionButton()
     }
     
     private func configureBackgroundView() {
@@ -48,7 +52,13 @@ class GFItemInfoVCV: UIViewController {
         stackView.addArrangedSubview(infoItemViewTwo)
     }
     
+    private func configureActionButton() {
+        actionButton.addTarget(self, action: #selector(actionButtonTapped), for: .touchUpInside)
+    }
     
+    @objc func actionButtonTapped() {
+        
+    }
     //StackView Constraints and button 
     private func layoutUI() {
         view.addSubview(stackView)

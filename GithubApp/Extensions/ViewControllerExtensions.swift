@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 //We use Fileprivate becuase extensions cant hold variable so we use now use varibles
 fileprivate var containerView: UIView!
@@ -19,6 +20,12 @@ extension UIViewController {
             alertVC.modalTransitionStyle = .crossDissolve
             self.present(alertVC,animated: true)
         }
+    }
+    
+    func presentSafariVC(with url: URL){
+        let safariVC = SFSafariViewController(url: url)
+        safariVC.preferredControlTintColor = .systemGreen
+        present(safariVC, animated:  true)
     }
 
     
