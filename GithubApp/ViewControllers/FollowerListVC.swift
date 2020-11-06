@@ -51,10 +51,7 @@ class FollowerListVC: UIViewController {
         navigationItem.rightBarButtonItem = addButton
     }
     
-    @objc func addButtonTapped(){
-        
-    }
-    
+   
     func configureCollectionView(){
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createThreeColumFlowLayout())
         view.addSubview(collectionView)
@@ -136,6 +133,34 @@ class FollowerListVC: UIViewController {
             }
         }
     }
+    
+    @objc func addButtonTapped() {
+        showLoadingView()
+           NetworkManager.shared.getUserInformation(for: username) { [weak self] result in
+               guard let self = self else {return}
+               self.dismissLoadingView()
+               
+               switch result {
+               case .success(let user):
+               
+                   let favorite = Follower(login: user.login, avatarUrl: user.avatarUrl)
+                   
+                   PersistanceManager.upateWith(favorite: favorite, actionType: .add ) { [weak self] error in
+                   guard let self = self else {return}
+                   guard let error = error  else {
+                   self.presentGFAlertOnMainTread(title: "Success", message: "You have sucessfully favorited this user", buttonTitle: "okay")
+                       return
+                   }
+                       self.presentGFAlertOnMainTread(title: "Something went wrong ", message: error.rawValue, buttonTitle: "Okay")
+               }
+                   
+               
+               case .failure(let error):
+                   self.presentGFAlertOnMainTread(title: "Something went wrong", message: error.rawValue, buttonTitle: "Okay")
+               }
+           }
+       }
+       
     
     //This is where we configure the cell with data
     func configureDataSource(){

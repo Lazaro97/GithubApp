@@ -14,5 +14,14 @@ class FavoritesVC: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .black
         // Do any additional setup after loading the view.
+        
+        PersistanceManager.retrieveFavorites{ result in
+            switch result {
+            case .success(let favorites):
+                print(favorites)
+            case .failure(let error):
+                break
+            }
+        }
     }
 }
