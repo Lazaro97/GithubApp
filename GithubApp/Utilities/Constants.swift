@@ -16,6 +16,10 @@ enum SFSymbols {
     static let following = "person.2"
 }
 
+enum Images {
+    static let ghLogo = UIImage(named: "gh-logo")
+    static let placeholder = UIImage(named: "avatar-placeholder")
+}
  
 enum ScreenSize {
     static let width        = UIScreen.main.bounds.size.width

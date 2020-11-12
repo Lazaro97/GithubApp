@@ -35,8 +35,18 @@ class GFUserHeaderVC: UIViewController {
         configureUIElements()
     }
     
+    func downloadAvatarImage () {
+        NetworkManager.shared.downloadImg(from: user.avatarUrl) { [weak self] image in
+            guard let self = self else { return }
+            
+            DispatchQueue.main.async {
+                self.userAvatarImg.image = image
+            }
+        }
+    }
+    
     func configureUIElements(){
-        userAvatarImg.downloadImg(from: user.avatarUrl)
+        downloadAvatarImage()
         usernameLbl.text = user.login
         nameLbl.text = user.name ?? "N/A"
         locationNameLbl.text = user.location ?? "N/A"

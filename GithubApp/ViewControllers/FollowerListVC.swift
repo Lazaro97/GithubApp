@@ -22,6 +22,7 @@ class FollowerListVC: UIViewController {
     var page = 1
     var hasMoreFollowers = true
     var isSearching = false
+    var isLoadingMoreFollowers = false
 
     var followers: [Follower] = []
     var filteredFollowers: [Follower] = []
@@ -38,7 +39,7 @@ class FollowerListVC: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-override func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
         configureViewController()
         configureCollectionView()
@@ -102,7 +103,6 @@ override func viewDidLoad() {
     func configureSearchController() {
         let searchController = UISearchController()
         searchController.searchResultsUpdater = self
-        searchController.searchBar.delegate = self
         searchController.searchBar.placeholder = "Seach for a username"
         searchController.obscuresBackgroundDuringPresentation = false
         navigationItem.searchController = searchController
@@ -114,6 +114,7 @@ override func viewDidLoad() {
     func getFollowers(username: String, page: Int) {
         
         showLoadingView()
+        isLoadingMoreFollowers = true
         
         NetworkManager.shared.getFollowers(for: username, page: page) { [weak self] result in
         
@@ -140,6 +141,7 @@ override func viewDidLoad() {
             case .failure(let error):
                 self.presentGFAlertOnMainTread(title: "Bad stuff happend", message: error.rawValue, buttonTitle: "Okay")
             }
+            self.isLoadingMoreFollowers = false
         }
     }
     
@@ -189,6 +191,7 @@ override func viewDidLoad() {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Follower>()
         snapshot.appendSections([.main])
         snapshot.appendItems(followers)
+        isSearching = false
         DispatchQueue.main.async {
             self.datasource.apply(snapshot, animatingDifferences:  true)
         }
@@ -202,26 +205,25 @@ extension FollowerListVC: UICollectionViewDelegate {
         let height = scrollView.frame.size.height
         
         if offsetY > contentHeight - height {
+            guard hasMoreFollowers, !isLoadingMoreFollowers else {return}
             page += 1
             getFollowers(username: username, page: page)
         }
     }
 }
     
-extension FollowerListVC: UISearchResultsUpdating, UISearchBarDelegate {
+extension FollowerListVC: UISearchResultsUpdating {
         
     func updateSearchResults(for searchController: UISearchController) {
-            guard let filter = searchController.searchBar.text, !filter.isEmpty else {
-                return
-            }
+        guard let filter = searchController.searchBar.text, !filter.isEmpty else {
+            filteredFollowers.removeAll()
+            updateData(on: followers)
+            return
+    }
         isSearching = true
         //Filter out the array from our search text. $0 represents the array item you are on. We used lowercased becuase it doesement matter if its capitalized or lowercassed.
         filteredFollowers = followers.filter {$0.login.lowercased().contains(filter.lowercased())}
         updateData(on: filteredFollowers)
-  }
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-       updateData(on: followers)
-        isSearching = false
     }
 }
 
@@ -236,6 +238,7 @@ extension FollowerListVC: UISearchResultsUpdating, UISearchBarDelegate {
             followers.removeAll()
             filteredFollowers.removeAll()
             collectionView.setContentOffset(.zero, animated: true)
+            collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
             getFollowers(username: username, page: page)
         }
     }

@@ -22,34 +22,47 @@ class GFEmptyStateView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    init(message:String) {
-        super.init(frame: .zero)
+     convenience init(message:String) {
+        self.init(frame: .zero)
         messageLbl.text = message
-        configure()
     }
     
     private func configure() {
+    configureMessageLabel()
+       configureLogoImageView()
+    }
+    
+    private func configureMessageLabel() {
         addSubview(messageLbl)
-        addSubview(logoImageView)
-        
         messageLbl.numberOfLines = 3
         messageLbl.textColor = .secondaryLabel
         
+        let labelCenterYConstant: CGFloat = DeviceTypes.isiPhoneSE || DeviceTypes.isiPhone8Zoomed ? -80 : -150
+        let messageLabelCenterYConstraint = messageLbl.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant:labelCenterYConstant)
+        messageLabelCenterYConstraint.isActive = true
+        
+        NSLayoutConstraint.activate([
+            ///messageLbl.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: -150),
+            messageLbl.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 40),
+            messageLbl.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -40),
+            messageLbl.heightAnchor.constraint(equalToConstant: 200)
+        ])
+    }
+    
+    private func configureLogoImageView() {
+        addSubview(logoImageView)
         logoImageView.image = UIImage(named: "empty-state-logo")!
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
         
+        let logoBottomConstnat: CGFloat = DeviceTypes.isiPhoneSE || DeviceTypes.isiPhone8Zoomed ? 80 : 40
+        let logoImageViewBottomConstraint = logoImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: logoBottomConstnat)
+        logoImageViewBottomConstraint.isActive = true
+        
         NSLayoutConstraint.activate([
-            messageLbl.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: -150),
-            messageLbl.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 40),
-            messageLbl.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -40),
-            messageLbl.heightAnchor.constraint(equalToConstant: 200),
-            
             logoImageView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1.3),
             logoImageView.heightAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1.3),
             logoImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 170),
-            logoImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 40)
-            
-            
+            /// logoImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 40)
         ])
     }
 }
