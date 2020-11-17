@@ -8,7 +8,7 @@ Clone the project and run in Xcode.
 
 ## Acknowledgments
 
-Inspired by [Sean Allen](https://github.com/seanallen0400), [Take Home Project](https://seanallen.teachable.com/)
+Inspired by Sean Allen, [Take Home Project](https://seanallen.teachable.com/)
 
 ## Screenshots
 
